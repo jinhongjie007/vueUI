@@ -2,7 +2,10 @@
     <div id="app">
         <v-layout>
             <v-sider collapsible :collapsed="collapsed" :trigger="false" :collapsed-width="64">
-                <div class="logo">XSHOP</div>
+                <router-link class="logo" to="/">
+                    <span class="logo-mini" v-show="collapsed"><b>shop</b></span>
+                    <span class="logo-lg" v-show="!collapsed"><b>X</b>Shop</span>
+                </router-link>
                 <v-menu theme="dark" :mode="collapsed?'vertical':'inline'" :data="menuData">
                     <template scope="{data}">
                         <i v-if="data.icon" :class="'anticon anticon-' + data.icon"></i>
@@ -15,7 +18,7 @@
                 </v-menu>
             </v-sider>
             <v-layout>
-                <v-header :style="{ background: '#fff', padding: 0 }">
+                <v-header>
                     <v-icon class="trigger" :type="this.collapsed ? 'menu-unfold' : 'menu-fold'"
                             @click.native="toggle"></v-icon>
                 </v-header>
@@ -27,7 +30,7 @@
                     </v-breadcrumb>
                     <div style="padding: 24px; background: #fff; min-height: 360px;">Content</div>
                 </v-content>
-                <v-footer :style="{ textAlign: 'center' }">
+                <v-footer>
                     Ant Design ©2016 Created by Ant UED
                 </v-footer>
             </v-layout>
@@ -159,19 +162,30 @@ export default {
 }
 #app .trigger {
     font-size: 18px;
-    line-height: 64px;
+    line-height: 50px;
     padding: 0 16px;
     cursor: pointer;
     transition: color .3s;
 }
-#app .trigger:hover {
-    color: #108ee9;
-}
 #app .logo {
-    height: 32px;
-    background: #333;
-    border-radius: 6px;
-    margin: 16px;
+    background: #367fa9;
+    color: #fff;
+    height: 50px;
+    display: block;
+    font-size: 20px;
+    line-height: 50px;
+    text-align: center;
+    font-weight: 300;
+}
+#app .logo:hover {
+    background: #357ca5;
+}
+#app .ant-layout-header {
+    height: 50px;
+    background: #3c8dbc;
+    line-height: 50px;
+    padding: 0;
+    color: #fff;
 }
 #app .ant-layout-sider-collapsed .anticon {
     font-size: 16px;
@@ -182,5 +196,11 @@ export default {
 }
 #app .ant-layout-sider-collapsed .ant-menu-submenu-vertical > .ant-menu-submenu-title:after {
         display: none;
-    }
+}
+#app .ant-layout-footer {
+    background:#fff;
+    padding:15px;
+    color:#444;
+    border-top:1px solid #d2d6de;
+}
 </style>
