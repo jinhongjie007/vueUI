@@ -3,8 +3,8 @@
         <v-layout>
             <v-sider collapsible :collapsed="collapsed" :trigger="false" :collapsed-width="64">
                 <router-link class="logo" to="/">
-                    <span class="logo-mini" v-show="collapsed"><b>shop</b></span>
-                    <span class="logo-lg" v-show="!collapsed"><b>X</b>Shop</span>
+                    <span class="logo-mini" v-show="collapsed"><strong>shop</strong></span>
+                    <span class="logo-lg" v-show="!collapsed"><strong>X</strong>Shop</span>
                 </router-link>
                 <v-menu theme="dark" :mode="collapsed?'vertical':'inline'" :data="menuData">
                     <template scope="{data}">
@@ -22,7 +22,7 @@
                     <v-icon class="trigger" :type="this.collapsed ? 'menu-unfold' : 'menu-fold'"
                             @click.native="toggle"></v-icon>
                 </v-header>
-                <v-content :style="{ padding: '0 50px' }">
+                <v-content :style="{ padding: '0 15px' }">
                     <v-breadcrumb :style="{ margin: '12px 0' }">
                         <v-breadcrumb-item>Home</v-breadcrumb-item>
                         <v-breadcrumb-item href="">List</v-breadcrumb-item>
@@ -31,7 +31,11 @@
                     <div style="padding: 24px; background: #fff; min-height: 360px;">Content</div>
                 </v-content>
                 <v-footer>
-                    Ant Design ©2016 Created by Ant UED
+                    <v-col :md="12">Ant Design ©2016 Created by Ant UED</v-col>
+                    <v-col :md="12" class="text-right">
+                        <strong>Version</strong>
+                        1.0.0
+                    </v-col>
                 </v-footer>
             </v-layout>
         </v-layout>
