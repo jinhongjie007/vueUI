@@ -20,7 +20,13 @@
             <v-layout>
                 <v-header>
                     <v-icon class="trigger" :type="this.collapsed ? 'menu-unfold' : 'menu-fold'"
-                            @click.native="toggle"></v-icon>
+                            @click.native="toggle">
+                    </v-icon>
+                    <v-dropdown :data="data" trigger="click" class="pull-right">
+                        <a href="javascript:void(0)" class="ant-dropdown-link ant-dropdown-trigger">
+                            admin <v-icon type="down"></v-icon>
+                        </a>
+                    </v-dropdown>
                 </v-header>
                 <v-content :style="{ padding: '0 15px' }">
                     <v-breadcrumb :style="{ margin: '12px 0' }">
@@ -47,13 +53,37 @@ export default {
   name: 'app',
   data () {
     return {
+      data: [
+        {content: '1st item'},
+        {content: '2nd item'},
+        {content: '3rd item'}
+      ],
       collapsed: false,
       menuData: [{
         name: '站点设置',
-        icon: 'user'
+        icon: 'setting',
+        children: [{
+          name: '全局设置'
+        }, {
+          name: '登陆设置'
+        }, {
+          name: '消息模板'
+        }, {
+          name: '支付设置'
+        }, {
+          name: '物流配置'
+        }, {
+          name: '模板管理'
+        }, {
+          name: '图片管理'
+        }, {
+          name: '地区设置'
+        }, {
+          name: '权限设置'
+        }]
       }, {
         name: '商品管理',
-        icon: 'team',
+        icon: 'shop',
         children: [{
           name: '商品列表'
         }, {
@@ -67,7 +97,7 @@ export default {
         }]
       }, {
         name: '订单管理',
-        icon: 'file',
+        icon: 'shopping-cart',
         children: [{
           name: '订单列表'
         }, {
@@ -77,10 +107,19 @@ export default {
         }]
       }, {
         name: '促销管理',
-        icon: 'file'
+        icon: 'gift',
+        children: [{
+          name: '订单促销'
+        }, {
+          name: '商品促销'
+        }, {
+          name: '限时促销'
+        }, {
+          name: '组合套餐'
+        }]
       }, {
         name: '会员管理',
-        icon: 'file',
+        icon: 'user',
         children: [{
           name: '会员列表'
         }, {
@@ -88,11 +127,11 @@ export default {
         }, {
           name: '积分管理'
         }, {
-          name: '预存款管理'
+          name: '余额管理'
         }]
       }, {
         name: '运营管理',
-        icon: 'file',
+        icon: 'compass',
         children: [{
           name: '文章分类'
         }, {
@@ -105,12 +144,18 @@ export default {
           name: '广告管理'
         }, {
           name: '首页管理'
+        }, {
+          name: '专题管理'
         }]
       }, {
         name: '统计管理',
-        icon: 'file',
+        icon: 'area-chart',
         children: [{
           name: '店铺概况'
+        }, {
+          name: '会员分析'
+        }, {
+          name: '行业分析'
         }, {
           name: '商品分析'
         }, {
@@ -122,7 +167,7 @@ export default {
         }]
       }, {
         name: '微店管理',
-        icon: 'file',
+        icon: 'mobile',
         children: [{
           name: '首页设置'
         }, {
@@ -206,5 +251,8 @@ export default {
     padding:15px;
     color:#444;
     border-top:1px solid #d2d6de;
+}
+.ant-menu-dark.ant-menu-inline .ant-menu-item-selected{
+    background-color: #3c8dbc;
 }
 </style>
