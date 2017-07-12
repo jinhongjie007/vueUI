@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+
 import vueBeauty from 'vue-beauty'
 import 'vue-beauty/package/style/vue-beauty.min.css'
 

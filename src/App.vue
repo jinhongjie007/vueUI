@@ -9,7 +9,7 @@
                 <v-menu theme="dark" :mode="collapsed?'vertical':'inline'" :data="menuData">
                     <template scope="{data}">
                         <i v-if="data.icon" :class="'anticon anticon-' + data.icon"></i>
-                        <span :class="{'nav-text':data.icon}">{{data.name}}</span>
+                        <router-link :to="data.href" :class="{'nav-text':data.icon}">{{data.name}}</router-link>
                     </template>
                     <template scope="{data}" slot="sub">
                         <i v-if="data.icon" :class="'anticon anticon-' + data.icon"></i>
@@ -22,19 +22,9 @@
                     <v-icon class="trigger" :type="this.collapsed ? 'menu-unfold' : 'menu-fold'"
                             @click.native="toggle">
                     </v-icon>
-                    <v-dropdown :data="data" trigger="click" class="pull-right">
-                        <a href="javascript:void(0)" class="ant-dropdown-link ant-dropdown-trigger">
-                            admin <v-icon type="down"></v-icon>
-                        </a>
-                    </v-dropdown>
                 </v-header>
                 <v-content :style="{ padding: '0 15px' }">
-                    <v-breadcrumb :style="{ margin: '12px 0' }">
-                        <v-breadcrumb-item>Home</v-breadcrumb-item>
-                        <v-breadcrumb-item href="">List</v-breadcrumb-item>
-                        <v-breadcrumb-item href="">App</v-breadcrumb-item>
-                    </v-breadcrumb>
-                    <div style="padding: 24px; background: #fff; min-height: 360px;">Content</div>
+                    <router-view></router-view>
                 </v-content>
                 <v-footer>
                     <v-col :md="12">Ant Design ©2016 Created by Ant UED</v-col>
@@ -85,15 +75,20 @@ export default {
         name: '商品管理',
         icon: 'shop',
         children: [{
-          name: '商品列表'
+          name: '商品列表',
+          href: '/goods/list'
         }, {
-          name: '商品分类'
+          name: '商品分类',
+          href: '/goods/class'
         }, {
-          name: '商品规格'
+          name: '商品规格',
+          href: '/goods/spec'
         }, {
-          name: '商品属性'
+          name: '商品属性',
+          href: '/goods/'
         }, {
-          name: '商品品牌'
+          name: '商品品牌',
+          href: '/goods/brand'
         }]
       }, {
         name: '订单管理',
@@ -121,75 +116,103 @@ export default {
         name: '会员管理',
         icon: 'user',
         children: [{
-          name: '会员列表'
+          name: '会员列表',
+          href: '/user/list'
         }, {
-          name: '会员等级'
+          name: '会员等级',
+          href: '/user/grade'
         }, {
-          name: '积分管理'
+          name: '积分管理',
+          href: '/user/points'
         }, {
-          name: '余额管理'
+          name: '余额管理',
+          href: 'predeposit'
         }]
       }, {
         name: '运营管理',
         icon: 'compass',
         children: [{
-          name: '文章分类'
+          name: '文章分类',
+          href: '/artical/class'
         }, {
-          name: '文章管理'
+          name: '文章管理',
+          href: '/artical/list'
         }, {
-          name: '站点帮助'
+          name: '站点帮助',
+          href: '/help'
         }, {
-          name: '友情链接'
+          name: '友情链接',
+          href: '/friend-link'
         }, {
-          name: '广告管理'
+          name: '广告管理',
+          href: 'ad'
         }, {
-          name: '首页管理'
+          name: '首页管理',
+          href: 'index'
         }, {
-          name: '专题管理'
+          name: '专题管理',
+          href: 'special'
         }]
       }, {
         name: '统计管理',
         icon: 'area-chart',
         children: [{
-          name: '店铺概况'
+          name: '店铺概况',
+          href: '/stat/shop'
         }, {
-          name: '会员分析'
+          name: '会员分析',
+          href: '/stat/user'
         }, {
-          name: '行业分析'
+          name: '行业分析',
+          href: '/stat/industry'
         }, {
-          name: '商品分析'
+          name: '商品分析',
+          href: '/stat/goods'
         }, {
-          name: '销量分析'
+          name: '销量分析',
+          href: '/stat/trade'
         }, {
-          name: '营销分析'
+          name: '营销分析',
+          href: '/stat/marketing'
         }, {
-          name: '售后分析'
+          name: '售后分析',
+          href: '/stat/aftersale'
         }]
       }, {
         name: '微店管理',
         icon: 'mobile',
         children: [{
-          name: '首页设置'
+          name: '首页设置',
+          href: '/wap/index'
         }, {
-          name: '专题设置'
+          name: '专题设置',
+          href: '/wap/special'
         }]
       }, {
         name: '微信管理',
         icon: 'file',
         children: [{
-          name: '二维码'
+          name: '二维码',
+          href: '/wechat/qrcode'
         }, {
-          name: '自定义菜单'
+          name: '自定义菜单',
+          href: '/wechat/menu'
         }, {
-          name: '模板消息'
+          name: '模板消息',
+          href: '/wechat/template'
         }, {
-          name: '素材管理'
+          name: '素材管理',
+          href: '/wechat/material'
         }, {
-          name: '自动回复'
+          name: '自动回复',
+          href: '/wechat/user'
         }, {
-          name: '用户管理'
+          name: '用户管理',
+          href: '/wechat/user'
         }, {
-          name: '群发功能'
+          name: '群发功能',
+          href: '/wechat/message',
+          target: '_blank'
         }]
       }]
     }
@@ -253,6 +276,6 @@ export default {
     border-top:1px solid #d2d6de;
 }
 .ant-menu-dark.ant-menu-inline .ant-menu-item-selected{
-    background-color: #3c8dbc;
+    background-color: #357ca5;
 }
 </style>
